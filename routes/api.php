@@ -24,5 +24,5 @@ Route::prefix('auth')->group(function () {
     Route::post('/signin', [AuthenticationController::class, 'signin']);
     // Route::post('/reset-password', [ResetPasswordController::class, 'reset']);
     // Route::post('/forgot-password', [ResetPasswordController::class, 'forgot']);
-    // Route::get('/sign-out', [AuthenticationController::class, 'logout'])->middleware('auth:sanctum');
+    Route::get('/signout', [AuthenticationController::class, 'logout'])->middleware('auth:sanctum');
 });

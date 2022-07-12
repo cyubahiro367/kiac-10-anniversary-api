@@ -68,4 +68,14 @@ class AuthenticationController extends Controller
             "token" => $token
         ]);
     }
+
+    public function logout()
+    {
+        auth()->user()->tokens()->delete();
+
+
+        return response()->json([
+            'message' => 'Tokens Revoked'
+        ], Response::HTTP_OK);
+    }
 }
