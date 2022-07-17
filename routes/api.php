@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AttenderController;
 use App\Http\Controllers\AuthenticationController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -25,4 +26,9 @@ Route::prefix('auth')->group(function () {
     // Route::post('/reset-password', [ResetPasswordController::class, 'reset']);
     // Route::post('/forgot-password', [ResetPasswordController::class, 'forgot']);
     Route::get('/signout', [AuthenticationController::class, 'logout'])->middleware('auth:sanctum');
+});
+
+Route::prefix('attender')->group(function () {
+    Route::get('', [AttenderController::class, 'index']);
+    Route::post('', [AttenderController::class, 'store']);
 });
