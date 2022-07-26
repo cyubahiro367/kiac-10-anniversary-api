@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\SendComfirmationRegistrationEmail;
+use App\Mail\SendRegistrationEmail;
 use App\Models\Attender;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Mail;
 
 class AttenderController extends Controller
 {
@@ -51,9 +54,16 @@ class AttenderController extends Controller
                     'country' => $request->country
                 ]);
             });
+
+            $fullName = "$request->firstName  $request->lastName";
+
+            Mail::to("theotimecyubahiro@gmail.com")->send(new SendComfirmationRegistrationEmail($request->email, $fullName));
+            
             return \response()->json(['success' => true]);
 
         } catch (\Exception $exception) {
+
+            dd($exception);
 
             Log::error('System error, contact support', [
                 "userEmail" => $request->email,
