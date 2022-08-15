@@ -32,12 +32,15 @@ class AttenderController extends Controller
             'jobTitle' => 'required|string', 
             'companyAddress' => 'required|string', 
             'phoneNumber' => 'required|string', 
-            'country' => 'required|string'
+            'country' => 'required|string',
+            'paymentProof'=> 'sometimes|file|max:10000|mimes:pdf,jpg,jpeg,png'
         ]);
 
         if ($validation->fails()) {
             return response()->json(['errors' => $validation->errors()->all()], Response::HTTP_UNPROCESSABLE_ENTITY);
         }
+
+        // $path = $request->paymentProof->store('proofs');
 
         try {
 
@@ -51,13 +54,23 @@ class AttenderController extends Controller
                     'jobTitle' => $request->jobTitle,
                     'companyAddress' => $request->companyAddress,
                     'phoneNumber' => $request->phoneNumber,
-                    'country' => $request->country
+                    'country' => $request->country,
+                    'paymentProof'=>  $request->paymentProof->store('proofOfPayments')
                 ]);
             });
 
             $fullName = "$request->firstName  $request->lastName";
 
-            Mail::to("theotimecyubahiro@gmail.com")->send(new SendComfirmationRegistrationEmail($request->email, $fullName));
+            Mail::to("theotimecyubahiro@gmail.com")->send(new SendComfirmationRegistrationEmail(
+                $request->firstName, 
+                $request->lastName, 
+                $request->email, 
+                $request->organisation, 
+                $request->jobTitle, 
+                $request->companyAddress, 
+                $request->phoneNumber,
+                $request->country
+            ));
             
             return \response()->json(['success' => true]);
 

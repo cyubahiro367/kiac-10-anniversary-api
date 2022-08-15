@@ -13,17 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('Attender', function (Blueprint $table) {
+        Schema::create('Country', function (Blueprint $table) {
             $table->id();
-            $table->string("firstName");
-            $table->string("lastName");
-            $table->string("email");
-            $table->string("organisation");
-            $table->string("jobTitle");
-            $table->string("companyAddress");
-            $table->string("phoneNumber");
-            $table->string("country");
-            $table->string("PaymentProof");
+            $table->string('name');
             $table->integer('created_at');
             $table->integer('updated_at');
         });
@@ -36,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Attender');
+        Schema::dropIfExists('Country');
     }
 };

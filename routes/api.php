@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AttenderController;
 use App\Http\Controllers\AuthenticationController;
+use App\Models\Country;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -31,4 +32,10 @@ Route::prefix('auth')->group(function () {
 Route::prefix('attender')->group(function () {
     Route::get('', [AttenderController::class, 'index']);
     Route::post('', [AttenderController::class, 'store']);
+});
+
+Route::get('country', function(){
+    $country = Country::all(['id', 'name']);
+
+    return response()->json($country);
 });

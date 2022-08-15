@@ -14,6 +14,6 @@ class Attender extends Model
     protected $dateFormat = 'U';
 
     protected $fillable = [
-        'firstName', 'lastName', 'email', 'organisation','jobTitle', 'companyAddress', 'phoneNumber', 'country'
+        'firstName', 'lastName', 'email', 'organisation','jobTitle', 'companyAddress', 'phoneNumber', 'country','paymentProof'
     ];
 }
