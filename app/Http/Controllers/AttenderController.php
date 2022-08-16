@@ -33,7 +33,7 @@ class AttenderController extends Controller
             'companyAddress' => 'required|string', 
             'phoneNumber' => 'required|string', 
             'country' => 'required|string',
-            'paymentProof'=> 'sometimes|file|max:10000|mimes:pdf,jpg,jpeg,png'
+            // 'paymentProof'=> 'file|mimes:pdf,jpg,jpeg,png'
         ]);
 
         if ($validation->fails()) {
@@ -55,7 +55,7 @@ class AttenderController extends Controller
                     'companyAddress' => $request->companyAddress,
                     'phoneNumber' => $request->phoneNumber,
                     'country' => $request->country,
-                    'paymentProof'=>  $request->paymentProof->store('proofOfPayments')
+                    // 'paymentProof'=>  $request->paymentProof->store('proofOfPayments')
                 ]);
             });
 

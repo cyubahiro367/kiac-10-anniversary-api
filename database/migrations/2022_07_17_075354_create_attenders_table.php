@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string("companyAddress");
             $table->string("phoneNumber");
             $table->string("country");
-            $table->string("PaymentProof");
+            // $table->string("PaymentProof")->default(null);
             $table->integer('created_at');
             $table->integer('updated_at');
         });
