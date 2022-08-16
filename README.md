@@ -10,6 +10,11 @@ These are the procedures to follow when setting up the app for the first time us
 - Build the project **(keep this running in a tab in order to get access to the sail command)**
     ```
     vendor/bin/sail up
+    ```
+- Generate the application key
+    ```
+    vendor/bin/sail artisan kiac:setup
+    ```
 
 - Run migrations
     ```
