@@ -61,7 +61,7 @@ class AttenderController extends Controller
 
             $fullName = "$request->firstName  $request->lastName";
 
-            Mail::to("theotimecyubahiro@gmail.com")->send(new SendComfirmationRegistrationEmail(
+            Mail::to("info@kiac.org.rw")->send(new SendComfirmationRegistrationEmail(
                 $request->firstName, 
                 $request->lastName, 
                 $request->email, 
